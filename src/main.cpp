@@ -30,9 +30,9 @@ int main(int argc, char **argv){
 		sort(sols.begin(),sols.end());
 
 		// Error printing
-		for(auto &sol : sols)
-			printf("%09.3f ", sol.cost);
-		printf("\n");
+		// for(auto &sol : sols)
+		// 	printf("%09.3f ", sol.cost);
+		// printf("\n");
 
 		// Erasing the worst sols
 		sols.erase(sols.begin()+NUM_PARENTS,sols.end());
