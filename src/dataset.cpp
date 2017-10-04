@@ -44,7 +44,7 @@ int Dataset::load_dataset(char *filename){
 		cities.push_back(pair<double,double>(x,y));
 	}
 	compute_distances();
-	printf("%d cities loaded.\n", cities.size());
+	// printf("%d cities loaded.\n", cities.size());
 
 	return 0;
 }

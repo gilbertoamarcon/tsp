@@ -1,19 +1,5 @@
 #include "sol.hpp"
 
-Sol::Sol(Dataset *dataset){
-	this->dataset = dataset;
-	this->cities = new int[dataset->size()];
-	randomize();
-}
-
-Sol::Sol(Sol *sol){
-	this->dataset	= sol->dataset;
-	this->cost		= sol->cost;
-	this->cities	= new int[dataset->size()];
-	for(int i = 0; i < dataset->size(); i++)
-		this->cities[i] = sol->cities[i];
-}
-
 void Sol::randomize(){
 	vector<int> aux_vec;
 	for(int i = 0; i < dataset->size(); i++)
@@ -25,20 +11,6 @@ void Sol::randomize(){
 	}
 }
 
-double Sol::eval(){
-	cost = 0.0;
-	for(int i = 0; i < dataset->size()-1; i++)
-		cost += dataset->get_dist(cities[i], cities[i+1]);
-	return cost;
-}
-
-void Sol::print_solution(){
-	printf("[%09.3f]: ", eval());
-	for(int i = 0; i < dataset->size(); i++)
-		printf("%0*d ", (int)((dataset->size()==0)?1:1+log((double)(dataset->size()))/log(10)), cities[i]);
-	printf("\n");
-}
-
 void Sol::mutate(int range){
 	for(int i = 0; i < range; i++){
 		int index_a = rand()%dataset->size();
@@ -47,4 +19,35 @@ void Sol::mutate(int range){
 		cities[index_a] = cities[index_b];
 		cities[index_b] = aux;
 	}
+}
+
+double Sol::eval(){
+	cost = 0.0;
+	for(int i = 0; i < dataset->size()-1; i++)
+		cost += dataset->get_dist(cities[i], cities[i+1]);
+	return cost;
+}
+
+Sol::Sol(Dataset *dataset){
+	this->dataset = dataset;
+	this->cities = new int[dataset->size()];
+	randomize();
+	eval();
+}
+
+Sol::Sol(Sol *sol, int mutation_range){
+	this->dataset	= sol->dataset;
+	this->cost		= sol->cost;
+	this->cities	= new int[dataset->size()];
+	for(int i = 0; i < dataset->size(); i++)
+		this->cities[i] = sol->cities[i];
+	mutate(mutation_range);
+	eval();
+}
+
+void Sol::print_solution(){
+	printf("[%09.3f]: ", cost);
+	for(int i = 0; i < dataset->size(); i++)
+		printf("%0*d ", (int)((dataset->size()==0)?1:1+log((double)(dataset->size()))/log(10)), cities[i]);
+	printf("\n");
 }

@@ -11,6 +11,10 @@ class Sol{
 		// Random Initialization
 		void randomize();
 
+		void mutate(int range);
+
+		double eval();
+
 	public:
 
 		int *cities;
@@ -18,15 +22,9 @@ class Sol{
 
 		// Constructors
 		Sol(Dataset *dataset);
-		Sol(Sol *sol);
-
-		// Cost evaluation
-		double eval();
+		Sol(Sol *sol, int mutation_range);
 
 		void print_solution();
-
-		// Weight mutation
-		void mutate(int range);
 
 		bool operator < (const Sol& cities) const{
 			return (cost < cities.cost);

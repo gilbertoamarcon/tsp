@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <string>
 #include <stdlib.h>
+#include <limits.h>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -23,10 +24,9 @@
 using namespace std;
 
 // Evolution Parameters
-#define POP_SIZE		15
-#define NUM_PARENTS		5
+#define POP_SIZE		50
 #define NUM_EPOCHS		1000
-#define MUTATION_RANGE	5
+#define MUTATION_RANGE	1
 
 #define PI				3.14159265
 
@@ -38,5 +38,7 @@ using namespace std;
 #define C25_			"data/25cities.csv"
 #define C25A			"data/25cities_A.csv"
 #define C100			"data/100cities.csv"
+
+#define METHOD			0
 
 #endif
