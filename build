@@ -1,2 +1,1 @@
 g++ src/dataset.cpp src/sol.cpp src/main.cpp -O3 -o bin/main -lm -w -lX11 -std=c++11
-./bin/main 

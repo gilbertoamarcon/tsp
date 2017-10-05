@@ -23,9 +23,11 @@
 
 using namespace std;
 
+typedef std::chrono::high_resolution_clock Clock;
+
 // Evolution Parameters
 #define POP_SIZE		50
-#define NUM_EPOCHS		1000
+#define NUM_EPOCHS		10000
 #define MUTATION_RANGE	1
 
 #define PI				3.14159265
@@ -34,11 +36,11 @@ using namespace std;
 #define BUFFER_SIZE		256
 
 // Data Sets
-#define C15_			"data/15cities.csv"
+#define COST_PREF		"res/cost_"
 #define C25_			"data/25cities.csv"
 #define C25A			"data/25cities_A.csv"
 #define C100			"data/100cities.csv"
 
-#define METHOD			0
+#define METHOD			2
 
 #endif
